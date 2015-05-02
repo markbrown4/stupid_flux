@@ -20,7 +20,7 @@ Here's how you can create Stores, Actions, Resources and Components:
 
 ### Stores
 
-Stores maintain a set of data, listen to dispatched events that tell them they should update their data, and emit a `'change'` event when they do.
+Stores maintain a set of data, listen to dispatched events that tell them they should update their data, and emit a `change` event when they do.
 
 ```coffee
 
@@ -31,7 +31,7 @@ states = {
 }
 
 # public getters
-ThingStore = App.Stores.ThingStore = StupidFlux.createStore
+App.Stores.ThingStore = ThingStore = StupidFlux.createStore
   getState: ->
     things: things
     states: states
@@ -66,9 +66,9 @@ App.Resources.ThingResource = StupidFlux.createResource
 
 ### Components
 
-Components can fetch data from Stores public getters and listen to their `'change'` event and fire Actions.
+Components can fetch data from a Stores public getters and listen to their `change` event and fire Actions.
 
-```
+```coffee
 
 { ThingStore } = App.Stores
 { ThingActions } = App.Actions
