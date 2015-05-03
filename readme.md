@@ -1,6 +1,8 @@
 # Stupid Flux
 
-A minimal set of data-structuring to be able to start building an app with React and Flux.
+I like the restrictions that Flux places around data flow but I found it very difficult to get started with.  This is a stupidly simple set of data-structuring to allow you to start building a typical web application with React and Flux easily.
+
+The framework/ directory sits along-side your application code so nothing's hidden, extend and hack away at it to build your ideal API.  This is just a starting point for your own application framework.
 
 ## App
 
@@ -12,6 +14,7 @@ App =
   Actions: {}
   Resources: {}
   Components: {}
+  Filters: {}
 ```
 
 ## Factories
@@ -20,7 +23,7 @@ Here's how you can create Stores, Actions, Resources and Components:
 
 ### Stores
 
-Stores maintain a set of data, listen to dispatched events that tell them they should update their data, and emit a `change` event when they do.
+Stores maintain a set of data, expose public getters, listen to dispatched events that tell them they should update their data, and emit a `change` event when they do.
 
 ```coffee
 
@@ -31,7 +34,7 @@ states = {
 }
 
 # public getters
-App.Stores.ThingStore = ThingStore = StupidFlux.createStore
+App.Stores.ThingStore = ThingStore = App.createStore
   getState: ->
     things: things
     states: states
@@ -47,7 +50,7 @@ loadThings = ->
 
   ThingStore.emitChange()
 
-Dispatcher.register
+App.Dispatcher.register
   'refresh-things': -> loadThings()
   'things-refreshed': (data)-> updateThings(data)
 
@@ -56,11 +59,25 @@ Dispatcher.register
 ### Resources
 
 Resources are a simple persistence layer where you can put API related methods.
+They have RESTful methods and translate dates and utc timestamps from strings in your JSON API to JavaScript date objects.
 
 ```coffee
 
-App.Resources.ThingResource = StupidFlux.createResource
+App.Resources.ThingResource = App.createResource
   urlRoot: '/api/things'
+
+```
+
+All methods return Promises
+
+```coffee
+
+ThingResource.query()
+ThingResource.where(disabled: true)
+ThingResource.get(1)
+ThingResource.update(1, { name: 'Thing 2' })
+ThingResource.create(name: 'Thing 3')
+ThingResource.destroy(1)
 
 ```
 
@@ -104,7 +121,7 @@ Actions are entry points for data changes across your application, they can disp
 
 { ThingResource } = App.Resources
 
-App.Actions.ThingActions = StupidFlux.createAction
+App.Actions.ThingActions = App.createActions
   refresh: ->
     @dispatch 'refresh-things'
 
@@ -113,12 +130,24 @@ App.Actions.ThingActions = StupidFlux.createAction
 
 ```
 
-## Globals
+## Dependencies
 
-StupidFlux exposes 5 globals
-
-* App
-* StupidFlux
-* Dispatcher
 * React
 * ReactRouter
+* Reqwest
+* Moment
+* MicroEvent
+
+## Have a play
+
+```
+git clone git@github.com:markbrown4/stupid_flux.git
+cd stupid_flux
+npm start
+
+# run live-server in a separate proccess
+npm run server
+
+# run json-server in a separate proccess
+npm run server
+```

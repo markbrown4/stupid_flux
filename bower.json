@@ -1,0 +1,23 @@
+{
+  "name": "stupid_flux",
+  "version": "0.0.1",
+  "homepage": "https://github.com/markbrown4/stupid_flux",
+  "authors": [
+    "Mark Brown <markbrown4@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "react": "*",
+    "react-router": "*",
+    "microevent": "*",
+    "reqwest": "*",
+    "moment": "*"
+  }
+}

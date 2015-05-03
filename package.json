@@ -1,0 +1,29 @@
+{
+  "name": "stupid_flux",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "*",
+    "gulp-util": "*",
+    "gulp-include": "*",
+    "gulp-if": "*",
+    "gulp-concat": "*",
+    "gulp-wrap": "*",
+    "gulp-cjsx": "*",
+    "gulp-coffee": "*",
+    "gulp-sass": "*",
+    "gulp-autoprefixer": "*",
+    "live-server": "*",
+    "json-server": "*"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "gulp",
+    "live-server": "cd app && live-server",
+    "json-server": "json-server db.json"
+  }
+}
