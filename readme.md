@@ -163,4 +163,11 @@ npm run live-server
 
 # run json-server in a separate proccess
 npm run json-server
+
+## How stupid is this really?
+
+I don't know, I've only just started playing with React and Flux so I don't yet know the shortcomings and if there's anything fundamentally wrong with the way data would flow through this design.  If you have more experience with it and see gotcha's let me know @markbrown4 :thumbsup:
+
+I don't think it's an entirely stupid idea though.
+
 ```
