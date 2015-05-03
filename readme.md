@@ -65,6 +65,8 @@ They have RESTful methods and translate dates and utc timestamps from strings in
 
 App.Resources.ThingResource = App.createResource
   urlRoot: '/api/things'
+  dateFields: ['delivery_date']
+  dateTimeFields: ['created_at']
 
 ```
 
@@ -130,6 +132,17 @@ App.Actions.ThingActions = App.createActions
 
 ```
 
+### Filters
+
+Filters are just a place to throw view formatting functions
+
+```coffee
+
+App.Filters.name = (person)->
+  "#{ person.first_name } #{ person.last_name }"
+
+```
+
 ## Dependencies
 
 * React
@@ -146,8 +159,8 @@ cd stupid_flux
 npm start
 
 # run live-server in a separate proccess
-npm run server
+npm run live-server
 
 # run json-server in a separate proccess
-npm run server
+npm run json-server
 ```
